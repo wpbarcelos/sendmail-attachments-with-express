@@ -33,7 +33,7 @@ const mail = nodemailer.createTransport({
         pass: process.env.PASS,
     },
 });
-
+app.use(express.static("public"));
 app.post("/sendmail", upload.array("arquivos"), (req, res) => {
     if (req.files.length === 0) {
         return res
@@ -78,11 +78,29 @@ app.post("/sendmail", upload.array("arquivos"), (req, res) => {
         if (err) {
             res.send({ err });
         } else {
-            res.send({ message: "Email enviado com sucesso" });
+            res.send(`
+            <!DOCTYPE html>
+                <html lang="pt-br">
+                    <head>
+                        <meta charset="UTF-8" />
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <body style="font-size: 20px;margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <div style="flex-direction:column; color: white; width: 100%; height: 100vh; display:flex; align-items: center; justify-content: center; background:#000">
+                    <p style='color:white'>
+                        Email enviado com sucesso!
+                    </p>
+                    <a href="/form.html" style='text-decoration:none; color:white; margin-top: 50px;padding:10px; border:1px solid #fff;border-radius:3px;'>
+                        Enviar outro email
+                    </a>
+                </div>
+            </body>
+            </html>
+            `);
         }
     });
 });
 
 app.listen(3000, () => {
-    console.log("Servidor rodando...");
+    console.log("Servidor rodando na porta 3000...");
 });

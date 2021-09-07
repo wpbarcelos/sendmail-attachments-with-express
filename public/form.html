@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: #222;
+            }
+            * {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                box-sizing: border-box;
+                color: white;
+            }
+            input {
+                display: block;
+                width: 100%;
+                max-width: 600px;
+            }
+            form {
+                padding: 20px;
+                margin: 0 auto;
+                max-width: 600px;
+            }
+            input {
+                padding: 5px 10px;
+                border-radius: 5px;
+                border: 2px solid #fff;
+                background: none;
+                outline: 0;
+                margin-bottom: 16px;
+            }
+            button[type="submit"] {
+                color: white;
+                background: none;
+                width: 100%;
+                border: 2px solid #fff;
+                padding: 10px;
+                text-transform: uppercase;
+                font-size: 16px;
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <form
+            action="/sendmail"
+            method="POST"
+            enctype="multipart/form-data"
+            id="sendform"
+        >
+            <input
+                type="hidden"
+                name="assunto"
+                value="Mensagem do aplicativo"
+            />
+            <label for="">Nome</label>
+            <input type="text" name="nome" required />
+
+            <label for="">Email</label>
+            <input type="text" name="email" required />
+
+            <label for="">Telefone</label>
+            <input type="text" name="telefone" required />
+
+            <input type="file" name="arquivos" required />
+            <input type="file" name="arquivos" />
+            <input type="file" name="arquivos" />
+            <input type="file" name="arquivos" />
+            <input type="file" name="arquivos" />
+
+            <button type="submit" id="enviar">Enviar</button>
+            <p id="loading" style="text-align: center; color: white"></p>
+        </form>
+    </body>
+
+    <script>
+        const form = document.getElementById("sendform");
+        const enviar = document.getElementById("enviar");
+        const loading = document.getElementById("loading");
+
+        form.addEventListener("submit", (event) => {
+            enviar.disabled = true;
+            enviar.style.display = "none";
+            loading.innerHTML = "Enviando...";
+        });
+        // form.addEventListener("submit", (event) => {
+        //     event.preventDefault();
+        //     const formdata = new FormData(form);
+
+        //     fetch("/sendmail", {
+        //         body: formdata,
+        //         method: "POST",
+        //         headers: {
+        //             Accept: "application/json",
+        //             // "Content-Type": "multipart/form-data",
+        //             // boundary: "MyBoundary",
+        //         },
+        //     })
+        //         .then((response) => response.json())
+        //         .then((response) => {
+        //             console.log(response);
+        //         })
+        //         .catch((err) => {
+        //             console.log("err", { err });
+        //         });
+        // });
+    </script>
+</html>
