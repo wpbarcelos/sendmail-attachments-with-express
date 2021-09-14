@@ -57,17 +57,17 @@ app.post("/sendmail", upload.array("arquivos"), (req, res) => {
         filename,
     }));
 
-    const { nome, email, assunto } = req.body;
+    const { nome, email, telefone } = req.body;
 
     const mailOptions = {
         from: process.env.EMAIL,
         to: process.env.EMAIL,
         cc: email,
-        subject: `Email app siqueira: ${assunto}`,
-        html: `<p>Nova mensagem enviado pelo aplicativo.</p>
+        subject: `Email app siqueira`,
+        html: `<p>Você recebeu uma nova mensagem enviado pelo aplicativo.</p>
         <p><strong>Nome:</strong> ${nome}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Assunto:</strong> ${assunto}</p>
+        <p><strong>Telefone:</strong> ${telefone}</p>
         <p>Segue documentos em anexo<p>`,
     };
 
