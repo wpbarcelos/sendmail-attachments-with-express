@@ -61,11 +61,12 @@ app.post("/sendmail", upload.array("arquivos"), (req, res) => {
 
     const mailOptions = {
         from: process.env.EMAIL,
-        to: "wpbarcelos@gmail.com",
+        to: process.env.EMAIL,
         cc: email,
         subject: `Email app siqueira: ${assunto}`,
         html: `<p>Nova mensagem enviado pelo aplicativo.</p>
         <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Email:</strong> ${email}</p>
         <p><strong>Assunto:</strong> ${assunto}</p>
         <p>Segue documentos em anexo<p>`,
     };
